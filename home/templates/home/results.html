@@ -173,75 +173,97 @@
                         <th>Fama French</th>
                     </thead>
                     <tbody>
-                        {% for row in gdelt %}
-                            {% if row.final_finbert == 2 and row.fama_french == 1 %}
-                                <tr class='manu2' id='display'>
-                                    <td>{{row.crypto}}</td>
-                                    <td class='links'><a href={{row.url}}>{{row.url}}</a></td>
-                                    <td>{{row.title}}</td>
-                                    <td>{{row.domain}}</td>
-                                    <td>{{row.finbert_positive}}</td>
-                                    <td>{{row.finbert_negative}}</td>
-                                    <td>{{row.final_finbert}}</td>
-                                    <td>{{row.fama_french}}</td>
-                                </tr>
-                            {% elif row.final_finbert == -2 and row.fama_french == 1 %}
-                                <tr class='manu2' id='display'>
-                                    <td>{{row.crypto}}</td>
-                                    <td class='links'><a href={{row.url}}>{{row.url}}</a></td>
-                                    <td>{{row.title}}</td>
-                                    <td>{{row.domain}}</td>
-                                    <td>{{row.finbert_positive}}</td>
-                                    <td>{{row.finbert_negative}}</td>
-                                    <td>{{row.final_finbert}}</td>
-                                    <td>{{row.fama_french}}</td>
-                                </tr>
-                            {% elif row.final_finbert > 0 and row.fama_french == 1 %}
-                                <tr class='manu' id='display'>
-                                    <td>{{row.crypto}}</td>
-                                    <td class='links'><a href={{row.url}}>{{row.url}}</a></td>
-                                    <td>{{row.title}}</td>
-                                    <td>{{row.domain}}</td>
-                                    <td>{{row.finbert_positive}}</td>
-                                    <td>{{row.finbert_negative}}</td>
-                                    <td>{{row.final_finbert}}</td>
-                                    <td>{{row.fama_french}}</td>
-                                </tr>
-                            {% elif row.final_finbert < 0 and row.fama_french == 1 %}
-                                <tr class='manu1' id='display'>
-                                    <td>{{row.crypto}}</td>
-                                    <td class='links'><a href={{row.url}}>{{row.url}}</a></td>
-                                    <td>{{row.title}}</td>
-                                    <td>{{row.domain}}</td>
-                                    <td>{{row.finbert_positive}}</td>
-                                    <td>{{row.finbert_negative}}</td>
-                                    <td>{{row.final_finbert}}</td>
-                                    <td>{{row.fama_french}}</td>
-                                </tr>
-                            {% elif row.final_finbert > 0 and row.fama_french == 0 %}
-                                <tr id='display'>
-                                    <td>{{row.crypto}}</td>
-                                    <td class='links'><a href={{row.url}}>{{row.url}}</a></td>
-                                    <td>{{row.title}}</td>
-                                    <td>{{row.domain}}</td>
-                                    <td>{{row.finbert_positive}}</td>
-                                    <td>{{row.finbert_negative}}</td>
-                                    <td>{{row.final_finbert}}</td>
-                                    <td>{{row.fama_french}}</td>
-                                </tr>
-                            {% elif row.final_finbert < 0 and row.fama_french == 0 %}
-                                <tr id='display'>
-                                    <td>{{row.crypto}}</td>
-                                    <td class='links'><a href={{row.url}}>{{row.url}}</a></td>
-                                    <td>{{row.title}}</td>
-                                    <td>{{row.domain}}</td>
-                                    <td>{{row.finbert_positive}}</td>
-                                    <td>{{row.finbert_negative}}</td>
-                                    <td>{{row.final_finbert}}</td>
-                                    <td>{{row.fama_french}}</td>
-                                </tr>
-                            {% endif %}
-                        {% endfor %}
+                      {% for row in gdelt %}
+                      {% if row.final_finbert == 2 and row.fama_french == 1 %}
+                          <tr class='manu2' id='display'>
+                              <td>{{row.crypto}}</td>
+                              <td class='links'><a href={{row.url}}>{{row.url}}</a></td>
+                              <td>{{row.title}}</td>
+                              <td>{{row.domain}}</td>
+                              <td>{{row.finbert_positive}}</td>
+                              <td>{{row.finbert_negative}}</td>
+                              <td>{{row.final_finbert}}</td>
+                              <td>{{row.fama_french}}</td>
+                          </tr>
+                      {% elif row.final_finbert == -2 and row.fama_french == 1 %}
+                          <tr class='manu2' id='display'>
+                              <td>{{row.crypto}}</td>
+                              <td class='links'><a href={{row.url}}>{{row.url}}</a></td>
+                              <td>{{row.title}}</td>
+                              <td>{{row.domain}}</td>
+                              <td>{{row.finbert_positive}}</td>
+                              <td>{{row.finbert_negative}}</td>
+                              <td>{{row.final_finbert}}</td>
+                              <td>{{row.fama_french}}</td>
+                          </tr>
+                      {% elif row.final_finbert > 0.5 and row.fama_french == 0 %}
+                          <tr class='manu' id='display'>
+                              <td>{{row.crypto}}</td>
+                              <td class='links'><a href={{row.url}}>{{row.url}}</a></td>
+                              <td>{{row.title}}</td>
+                              <td>{{row.domain}}</td>
+                              <td>{{row.finbert_positive}}</td>
+                              <td>{{row.finbert_negative}}</td>
+                              <td>{{row.final_finbert}}</td>
+                              <td>{{row.fama_french}}</td>
+                          </tr>
+                      {% elif row.final_finbert > -0.5 and row.fama_french == 1 %}
+                          <tr class='manu' id='display'>
+                              <td>{{row.crypto}}</td>
+                              <td class='links'><a href={{row.url}}>{{row.url}}</a></td>
+                              <td>{{row.title}}</td>
+                              <td>{{row.domain}}</td>
+                              <td>{{row.finbert_positive}}</td>
+                              <td>{{row.finbert_negative}}</td>
+                              <td>{{row.final_finbert}}</td>
+                              <td>{{row.fama_french}}</td>
+                          </tr>
+                      {% elif row.final_finbert < 0.5 and row.fama_french == 1 %}
+                          <tr class='manu1' id='display'>
+                              <td>{{row.crypto}}</td>
+                              <td class='links'><a href={{row.url}}>{{row.url}}</a></td>
+                              <td>{{row.title}}</td>
+                              <td>{{row.domain}}</td>
+                              <td>{{row.finbert_positive}}</td>
+                              <td>{{row.finbert_negative}}</td>
+                              <td>{{row.final_finbert}}</td>
+                              <td>{{row.fama_french}}</td>
+                          </tr>
+                      {% elif row.final_finbert < -0.5 and row.fama_french == 0 %}
+                          <tr class='manu1' id='display'>
+                              <td>{{row.crypto}}</td>
+                              <td class='links'><a href={{row.url}}>{{row.url}}</a></td>
+                              <td>{{row.title}}</td>
+                              <td>{{row.domain}}</td>
+                              <td>{{row.finbert_positive}}</td>
+                              <td>{{row.finbert_negative}}</td>
+                              <td>{{row.final_finbert}}</td>
+                              <td>{{row.fama_french}}</td>
+                          </tr>
+                      {% elif row.final_finbert > 0 and row.fama_french == 0 %}
+                          <tr id='display'>
+                              <td>{{row.crypto}}</td>
+                              <td class='links'><a href={{row.url}}>{{row.url}}</a></td>
+                              <td>{{row.title}}</td>
+                              <td>{{row.domain}}</td>
+                              <td>{{row.finbert_positive}}</td>
+                              <td>{{row.finbert_negative}}</td>
+                              <td>{{row.final_finbert}}</td>
+                              <td>{{row.fama_french}}</td>
+                          </tr>
+                      {% elif row.final_finbert < 0 and row.fama_french == 0 %}
+                          <tr id='display'>
+                              <td>{{row.crypto}}</td>
+                              <td class='links'><a href={{row.url}}>{{row.url}}</a></td>
+                              <td>{{row.title}}</td>
+                              <td>{{row.domain}}</td>
+                              <td>{{row.finbert_positive}}</td>
+                              <td>{{row.finbert_negative}}</td>
+                              <td>{{row.final_finbert}}</td>
+                              <td>{{row.fama_french}}</td>
+                          </tr>
+                      {% endif %}
+                  {% endfor %}
                     </tbody>
                 </table>
             </div>
