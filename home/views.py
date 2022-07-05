@@ -63,7 +63,7 @@ def InfoExtraction(request):
     
     else:
         texts = ['Hello Crypto Enthusiast.', 'Congratulations for being!', f'1st searching {crypto_input} today 🚀']
-        daybefore = currenday - timedelta(days=1)
+        daybefore = currenday - timedelta(days=2)
         start_date = daybefore.strftime("%Y-%m-%d")
         end_date = currenday.strftime("%Y-%m-%d")
 
@@ -136,7 +136,7 @@ def InfoExtraction(request):
                     finbert_positive = round(df.iloc[row].values[8],3),
                     finbert_negative = round(df.iloc[row].values[9],3),
                     final_finbert = round(df.iloc[row].values[11],3),
-                    fama_french = Gdelt.objects.filter(crypto=crypto_input).values('fama_french')
+                    fama_french = int(list(Gdelt.objects.filter(crypto=crypto_input).values('fama_french').last().values())[0])
 
                 )
                 select_place.append(selected_choice)
@@ -161,7 +161,7 @@ def InfoExtraction(request):
                     finbert_positive = round(df.iloc[row].values[8],3),
                     finbert_negative = round(df.iloc[row].values[9],3),
                     final_finbert = round(df.iloc[row].values[11],3),
-                    fama_french = Gdelt.objects.filter(crypto=crypto_input).values('fama_french')
+                    fama_french = int(list(Gdelt.objects.filter(crypto=crypto_input).values('fama_french').last().values())[0])
 
                 )
                 select_place.append(selected_choice)
