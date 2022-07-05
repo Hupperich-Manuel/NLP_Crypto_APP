@@ -1,0 +1,1 @@
+web: gunicorn bitcoin_webapp.wsgi --timeout 500 --preload --log-file -

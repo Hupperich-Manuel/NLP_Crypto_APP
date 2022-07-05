@@ -1,0 +1,355 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Risk Fraud Crypto Webapp</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="{% static 'assets/favicon.ico' %}" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+        <style>
+            
+
+            .red tbody td{
+                background-color: red !important;
+            }
+            
+            .yellow tbody td{
+                background-color:!important;
+            }
+            .Failed {
+                background: red;
+                color: white;
+            }
+
+            .container_2 {
+                position: relative;
+                top: 100px;
+
+                -webkit-transform: translate(10%, 10%);
+                        transform: translate(-15%, 0%);
+              }
+
+              table {
+                box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+                table-layout: fixed;
+                left:150px;
+                width: 90%; 
+                height:160%;
+                left-margin: 5em;
+                margin: 10px;
+                margin-top:1em;
+                background: linear-gradient(45deg, #49a09d, #5f2c82);
+                font-family: sans-serif;
+                font-weight: 100;
+                position: relative;
+                margin-bottom:20em;
+              }
+              th,
+              td {
+                background-color: rgba(255, 255, 255, 0.2);
+                color: #fff;
+              }
+              th {
+                text-align: center;
+              }
+              thead th {
+                background-color: #55608f;
+              }
+              tbody tr:hover {
+                background-color: rgba(255, 255, 255, 0.3);
+              }
+              tbody td {
+                position: relative;
+                height:100px;
+                max-width: 150px;
+                max-height: 150px;
+                overflow: hidden;
+              }
+              tbody td:hover:before {
+                content: "";
+                position: absolute;
+                left: 0;
+                right: 0;
+
+                background-color: rgba(255, 255, 255, 0.2);
+                z-index: -1;
+              }
+              tr.manu1{
+                background-color: #b90909 !important;
+              }
+              tr.manu2{
+                background-color: rgb(155, 124, 58) !important;
+              }
+
+              tr.manu2:hover{
+
+                background-color: rgb(255, 194, 62) !important;
+              }
+            
+              tr.manu{
+                background-color: green !important;
+              }
+
+              tr.manu:hover{
+                background-color: #23b93c !important;
+              }
+
+              tr.manu1:hover{
+                background-color: #e20a0a !important;
+              }
+
+              .links{
+                font-size:13px;
+                max-width:100px;
+                width: 0px;
+              }
+              a:link {color:#d1cbda !important;}
+              a:hover {color:white !important;}
+
+              #crypto{
+                width:100px;
+                margin-top:-3em;
+              }
+
+        </style>
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand" href="#page-top">Start Crypto Search</a>
+                <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+        <!-- Masthead-->
+        <header class="masthead bg-primary text-white text-center">
+            <script type="text/javascript">
+                $(function() {
+
+                    $(".table1").find("tr").each(function () {
+                       var status= $(this).find(".manu").html();  
+                       if(status>.5)
+                         {
+                                $(this).addClass("failed")
+                         }
+                    });
+                });
+            </script>
+            <div class='console-container'><span id='hupa'></span><div class='console-underscore' id='console'>&#95;</div></div>
+            <div class="container d-flex align-items-center flex-column">
+                <!-- Masthead Avatar Image-->
+                <img class="masthead-avatar mb-5" id='crypto' src="{% static 'assets/img/bitc.png' %}" alt="..." />
+                <!-- Masthead Heading-->
+                <h1 class="masthead-heading text-uppercase mb-0" style='font-size:30px; margin-top:-1em;'>Find below the most <i>recent</i> News...</h1>
+                <!-- Icon Divider-->
+                <div class="divider-custom divider-light">
+                    <div class="divider-custom-line" style='width:40px; margin-top:-1.6em; '></div>
+                    <div class="divider-custom-icon" style='margin-top:-1em;'><i class="fas fa-star" style='width:20px;'></i></div>
+                    <div class="divider-custom-line" style='width:40px; margin-top:-1.6em;'></div>
+                </div>
+                <!-- Masthead Subheading-->
+                <table class="container_2" id="table1">
+                    <thead>
+                        <th>Crypto</th>
+                        <th>Url</th>
+                        <th>Title</th>
+                        <th>Domain</th>
+                        <th>Finbert Positive</th>
+                        <th>Finbert Negative</th>
+                        <th>Final Finbert</th>
+                        <th>Fama French</th>
+                    </thead>
+                    <tbody>
+                        {% for row in gdelt %}
+                            {% if row.final_finbert == 2 and row.fama_french == 1 %}
+                                <tr class='manu2' id='display'>
+                                    <td>{{row.crypto}}</td>
+                                    <td class='links'><a href={{row.url}}>{{row.url}}</a></td>
+                                    <td>{{row.title}}</td>
+                                    <td>{{row.domain}}</td>
+                                    <td>{{row.finbert_positive}}</td>
+                                    <td>{{row.finbert_negative}}</td>
+                                    <td>{{row.final_finbert}}</td>
+                                    <td>{{row.fama_french}}</td>
+                                </tr>
+                            {% elif row.final_finbert == -2 and row.fama_french == 1 %}
+                                <tr class='manu2' id='display'>
+                                    <td>{{row.crypto}}</td>
+                                    <td class='links'><a href={{row.url}}>{{row.url}}</a></td>
+                                    <td>{{row.title}}</td>
+                                    <td>{{row.domain}}</td>
+                                    <td>{{row.finbert_positive}}</td>
+                                    <td>{{row.finbert_negative}}</td>
+                                    <td>{{row.final_finbert}}</td>
+                                    <td>{{row.fama_french}}</td>
+                                </tr>
+                            {% elif row.final_finbert > 0 and row.fama_french == 1 %}
+                                <tr class='manu' id='display'>
+                                    <td>{{row.crypto}}</td>
+                                    <td class='links'><a href={{row.url}}>{{row.url}}</a></td>
+                                    <td>{{row.title}}</td>
+                                    <td>{{row.domain}}</td>
+                                    <td>{{row.finbert_positive}}</td>
+                                    <td>{{row.finbert_negative}}</td>
+                                    <td>{{row.final_finbert}}</td>
+                                    <td>{{row.fama_french}}</td>
+                                </tr>
+                            {% elif row.final_finbert < 0 and row.fama_french == 1 %}
+                                <tr class='manu1' id='display'>
+                                    <td>{{row.crypto}}</td>
+                                    <td class='links'><a href={{row.url}}>{{row.url}}</a></td>
+                                    <td>{{row.title}}</td>
+                                    <td>{{row.domain}}</td>
+                                    <td>{{row.finbert_positive}}</td>
+                                    <td>{{row.finbert_negative}}</td>
+                                    <td>{{row.final_finbert}}</td>
+                                    <td>{{row.fama_french}}</td>
+                                </tr>
+                            {% elif row.final_finbert > 0 and row.fama_french == 0 %}
+                                <tr id='display'>
+                                    <td>{{row.crypto}}</td>
+                                    <td class='links'><a href={{row.url}}>{{row.url}}</a></td>
+                                    <td>{{row.title}}</td>
+                                    <td>{{row.domain}}</td>
+                                    <td>{{row.finbert_positive}}</td>
+                                    <td>{{row.finbert_negative}}</td>
+                                    <td>{{row.final_finbert}}</td>
+                                    <td>{{row.fama_french}}</td>
+                                </tr>
+                            {% elif row.final_finbert < 0 and row.fama_french == 0 %}
+                                <tr id='display'>
+                                    <td>{{row.crypto}}</td>
+                                    <td class='links'><a href={{row.url}}>{{row.url}}</a></td>
+                                    <td>{{row.title}}</td>
+                                    <td>{{row.domain}}</td>
+                                    <td>{{row.finbert_positive}}</td>
+                                    <td>{{row.finbert_negative}}</td>
+                                    <td>{{row.final_finbert}}</td>
+                                    <td>{{row.fama_french}}</td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </header>
+        <!-- Portfolio Section-->
+        <!-- About Section-->
+        
+        <!-- Contact Section-->
+        
+        <!-- Footer-->
+        <footer class="footer text-center">
+            <div class="container">
+                <div class="row">
+                    <!-- Footer Location-->
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <h4 class="text-uppercase mb-4">Location </h4>
+                        <p class="lead mb-0">
+                            ie Business School
+                            <br />
+                            Calle de María de Molina, 31, 28006 Madrid
+                        </p>
+                    </div>
+                    <!-- Footer Social Icons-->
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <h4 class="text-uppercase mb-4">Around the Web-Develpment</h4>
+                        <a class="btn btn-outline-light btn-social mx-1" href="https://twitter.com/HupperichManuel" target="_blank"><i class="fab fa-fw fa-twitter"></i></a>
+                        <a class="btn btn-outline-light btn-social mx-1" href="https://www.linkedin.com/in/manuel-hupperich/" target="_blank"><i class="fab fa-fw fa-linkedin-in"></i></a>
+                        <a class="btn btn-outline-light btn-social mx-1" href="https://github.com/Hupperich-Manuel?tab=repositories" target="_blank"><i class="fab fa-fw fa-github"></i></a>
+                    </div>
+                    <!-- Footer About Text-->
+                    <div class="col-lg-4">
+                        <h4 class="text-uppercase mb-4">About Group D </h4>
+                        <p class="lead mb-0">
+                            <a href="https://www.linkedin.com/in/emma-fayos-garcia/" target="_blank">Emma Fayos</a> | 
+                            <a href="https://www.linkedin.com/in/patrick-rossier/" target="_blank">Patrick Rossier</a> | 
+                            <a href="https://www.linkedin.com/in/anna-markowetz-b00a2a180/" target="_blank">Anna Markowetz</a> | 
+                            <a href="https://www.linkedin.com/in/paloma-van-ginderachter/" target="_blank">Paloma Van Ginderachter</a> | 
+                            <a href="https://www.linkedin.com/in/constan%C3%A7adragobraga/" target="_blank">Constança Drago Braga</a> | 
+                            <a href="https://www.linkedin.com/in/philippe-kerno-49299873/" target="_blank">Philippe Kerno</a> | 
+                            <a href="https://www.linkedin.com/in/manuel-hupperich/" target="_blank">Manuel Hupperich</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+
+        <script>
+            // function([string1, string2],target id,[color1,color2])    
+     consoleText({{texts|safe}}, 'hupa',['white','white','white']);
+    
+    function consoleText(words, id, colors) {
+        
+      if (colors === undefined) colors = ['#fff'];
+      var visible = true;
+      var con = document.getElementById('console');
+      var letterCount = 1;
+      var x = 1;
+      var waiting = false;
+      var target = document.getElementById(id)
+      target.setAttribute('style', 'color:' + colors[0])
+      window.setInterval(function() {
+    
+        if (letterCount === 0 && waiting === false) {
+          waiting = true;
+          target.innerHTML = words[0].substring(0, letterCount)
+          window.setTimeout(function() {
+            var usedColor = colors.shift();
+            colors.push(usedColor);
+            var usedWord = words.shift();
+            words.push(usedWord);
+            x = 1;
+            target.setAttribute('style', 'color:' + colors[0])
+            letterCount += x;
+            waiting = false;
+          }, 1000)
+        } else if (letterCount === words[0].length + 1 && waiting === false) {
+          waiting = true;
+          window.setTimeout(function() {
+            x = -1;
+            letterCount += x;
+            waiting = false;
+          }, 1000)
+        } else if (waiting === false) {
+          target.innerHTML = words[0].substring(0, letterCount)
+          letterCount += x;
+        }
+      }, 120)
+      window.setInterval(function() {
+        if (visible === true) {
+          con.className = 'console-underscore hidden'
+          visible = false;
+    
+        } else {
+          con.className = 'console-underscore'
+    
+          visible = true;
+        }
+      }, 400)
+    }
+    </script>
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <!-- * *                               SB Forms JS                               * *-->
+        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    </body>
+</html>
