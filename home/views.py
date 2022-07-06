@@ -57,9 +57,12 @@ def InfoExtraction(request):
     rate = Gdelt.objects.filter(crypto=crypto_input).last() #Gdelt.objects.filter(crypto=crypto_input, date__day=today.day).last()
 
     if rate is not None:
-
-        delt = Gdelt.objects.filter(crypto=crypto_input, date__day=today.day)
-        texts = ['Hi user!!', 'Sorry this time you were 2nd', 'therefore, you only get todays data 😉']
+        try:
+            delt = Gdelt.objects.filter(crypto=crypto_input)
+            #texts = ['Hi user!!', 'Sorry this time you were 2nd', 'therefore, you only get todays data 😉']
+        except (ValueError, KeyError):
+            message = 'There is no information for this crypto in version 1.0. of this webapp'
+            return render(request, 'home/index.html',{'message':message})
     
     else:
         texts = ['Hello Crypto Enthusiast.', 'Congratulations for being!', f'1st searching {crypto_input} today 🚀']
