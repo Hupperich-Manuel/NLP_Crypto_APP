@@ -82,7 +82,7 @@ def InfoExtraction(request):
             df = articles[(articles["language"] == 'English')]
             
         except (ValueError, KeyError):
-            message = 'There is no information for this crypto'
+            message = 'There is no information for this crypto in version 1.0. of this webapp'
             return render(request, 'home/index.html',{'message':message})
 
         df['score'] = df['title'].map(lambda x: scoring(x))
