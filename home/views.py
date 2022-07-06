@@ -54,7 +54,7 @@ def InfoExtraction(request):
     currenday = date.today()
     today = timezone.now()
 
-    rate = Gdelt.objects.filter(crypto=crypto_input, date__day=today.day).last()
+    rate = Gdelt.objects.filter(crypto=crypto_input).last() #Gdelt.objects.filter(crypto=crypto_input, date__day=today.day).last()
 
     if rate is not None:
 

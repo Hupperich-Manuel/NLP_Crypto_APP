@@ -164,6 +164,7 @@
                 <table class="container_2" id="table1">
                     <thead>
                         <th>Crypto</th>
+                        <th>Date</th>
                         <th>Url</th>
                         <th>Title</th>
                         <th>Domain</th>
@@ -177,6 +178,7 @@
                       {% if row.final_finbert == 2 and row.fama_french == 1 %}
                           <tr class='manu2' id='display'>
                               <td>{{row.crypto}}</td>
+                              <td>{{row.date}}</td>
                               <td class='links'><a href={{row.url}}>{{row.url}}</a></td>
                               <td>{{row.title}}</td>
                               <td>{{row.domain}}</td>
@@ -188,6 +190,7 @@
                       {% elif row.final_finbert == -2 and row.fama_french == 1 %}
                           <tr class='manu2' id='display'>
                               <td>{{row.crypto}}</td>
+                              <td>{{row.date}}</td>
                               <td class='links'><a href={{row.url}}>{{row.url}}</a></td>
                               <td>{{row.title}}</td>
                               <td>{{row.domain}}</td>
@@ -199,6 +202,7 @@
                       {% elif row.final_finbert > 0.5 and row.fama_french == 0 %}
                           <tr class='manu' id='display'>
                               <td>{{row.crypto}}</td>
+                              <td>{{row.date}}</td>
                               <td class='links'><a href={{row.url}}>{{row.url}}</a></td>
                               <td>{{row.title}}</td>
                               <td>{{row.domain}}</td>
@@ -210,6 +214,7 @@
                       {% elif row.final_finbert > -0.5 and row.fama_french == 1 %}
                           <tr class='manu' id='display'>
                               <td>{{row.crypto}}</td>
+                              <td>{{row.date}}</td>
                               <td class='links'><a href={{row.url}}>{{row.url}}</a></td>
                               <td>{{row.title}}</td>
                               <td>{{row.domain}}</td>
@@ -221,6 +226,7 @@
                       {% elif row.final_finbert < 0.5 and row.fama_french == 1 %}
                           <tr class='manu1' id='display'>
                               <td>{{row.crypto}}</td>
+                              <td>{{row.date}}</td>
                               <td class='links'><a href={{row.url}}>{{row.url}}</a></td>
                               <td>{{row.title}}</td>
                               <td>{{row.domain}}</td>
@@ -232,6 +238,7 @@
                       {% elif row.final_finbert < -0.5 and row.fama_french == 0 %}
                           <tr class='manu1' id='display'>
                               <td>{{row.crypto}}</td>
+                              <td>{{row.date}}</td>
                               <td class='links'><a href={{row.url}}>{{row.url}}</a></td>
                               <td>{{row.title}}</td>
                               <td>{{row.domain}}</td>
@@ -243,6 +250,7 @@
                       {% elif row.final_finbert > 0 and row.fama_french == 0 %}
                           <tr id='display'>
                               <td>{{row.crypto}}</td>
+                              <td>{{row.date}}</td>
                               <td class='links'><a href={{row.url}}>{{row.url}}</a></td>
                               <td>{{row.title}}</td>
                               <td>{{row.domain}}</td>
@@ -254,6 +262,7 @@
                       {% elif row.final_finbert < 0 and row.fama_french == 0 %}
                           <tr id='display'>
                               <td>{{row.crypto}}</td>
+                              <td>{{row.date}}</td>
                               <td class='links'><a href={{row.url}}>{{row.url}}</a></td>
                               <td>{{row.title}}</td>
                               <td>{{row.domain}}</td>
